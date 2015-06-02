@@ -1,0 +1,20 @@
+#!/bin/sh
+# Get list of files changed in migrations, replace spaces with newlines
+new_migrations=$(git diff-tree --name-only -r ORIG_HEAD HEAD | grep migrations/ | tr " " "\n  ")
+
+HIGHLIGHT='\033[0;31m' # red
+NO_COLOR="\033[0m"
+
+echo "\nChecking for new migrations we may need to pay attention to..."
+
+if [ -n "$new_migrations" ]; then
+        echo "${HIGHLIGHT}"
+        printf '=%.0s' {1..80}
+        echo "\nPlease pay special attention to these new migrations: \n"
+        echo "${new_migrations}\n"
+        printf '=%.0s' {1..80}
+        echo " ${NO_COLOR} \n"
+else
+        echo "No migrations detected."
+fi
+
