@@ -1,4 +1,8 @@
 #!/bin/sh
+
+##########################################################################
+ Alert for new migrations
+##########################################################################
 # Get list of files changed in migrations, replace spaces with newlines
 new_migrations=$(git diff-tree --name-only -r ORIG_HEAD HEAD | grep migrations/ | tr " " "\n  ")
 
@@ -17,4 +21,28 @@ if [ -n "$new_migrations" ]; then
 else
         echo "No migrations detected."
 fi
+
+
+
+##########################################################################
+ Check bower and npm for updates
+##########################################################################
+
+# Modified from this version:
+# http://www.gianlucaguarini.com/blog/how-to-sync-git-with-compass-npm-bower-composer-and-whatever-other-tool/
+
+changed_files=$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)
+
+on_file_change() {
+    file=$(echo "$changed_files" | grep "$1")
+    # If we found a file to change
+    if [ -n "$file" ]; then
+        folder=$(dirname $file)
+        # Get into same dir as configuration file and execute command
+        cd $folder && eval "$2"
+    fi
+}
+
+on_file_change bower.json "bower install && bower update && bower prune"
+on_file_change package.json "npm install && npm prune"
 
