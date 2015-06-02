@@ -20,8 +20,9 @@ Insert whatever hooks you want like ```hooks/post-merge```, `chmod +x` them
 
 Go to your git repo and `git init` to pull down the hooks
 
+-----------------------------------------------
 
-# Example outputs
+# Hooks
 
 ## post-merge
 
