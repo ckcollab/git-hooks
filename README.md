@@ -1,7 +1,3 @@
-# git-hooks
-My personal git hooks I use on most projects (relevant to django, python, web dev)
-
-
 #### Installing per-project
 
 Edit ```.git/hooks/<hook>``` where `<hook>` can be something like `post-merge`
