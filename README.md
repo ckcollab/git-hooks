@@ -35,7 +35,7 @@ Checking for new migrations we may need to pay attention to...
 Please pay special attention to these new migrations: 
 
 codalab/apps/coopetitions/migrations/0001_initial.py
-codalab/apps/web/migrations/0040_auto__add_field_competition_allow_public_submissions.py
+codalab/apps/web/migrations/0040_auto__add_field.py
 
 ================================================================================  
 
