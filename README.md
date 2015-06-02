@@ -23,10 +23,12 @@ Go to your git repo and `git init` to pull down the hooks
 
 # Example outputs
 
-### Using post-merge migration checks
+## post-merge
+
+#### migration checks
 After merging with another branch on Django projects, it's often important to pay attention to migrations. This hook will highlight any migrations that are being merged.
 
-For example:
+Example output:
 ```
 
 Checking for new migrations we may need to pay attention to...
@@ -40,3 +42,7 @@ codalab/apps/web/migrations/0040_auto__add_field.py
 ================================================================================  
 
 ```
+
+
+#### bower/npm checks
+Automatically installs + prunes when `bower.json` or `package.json` are updated. The commands are run in the same directory as the configuration file
