@@ -1,0 +1,13 @@
+#!/bin/sh
+
+HIGHLIGHT='\033[0;31m' # red
+NO_COLOR="\033[0m"
+
+# Check that commit message begins with a semantic feature prefix
+if ! [[ $1 =~ ^(chore\:|docs\:|feat\:|fix\:|refactor\:|style\:|test\:) ]]; then
+    echo "${HIGHLIGHT}"
+    echo "ERROR :: git commit message is not semantic, must begin with chore, docs, feat, fix, refactor, style, or test"
+    echo "${NO_COLOR}"
+    exit 1
+fi
+
