@@ -7,19 +7,19 @@ NO_COLOR = '\033[0m'
 commit_msg = open(sys.argv[1], "r").read()
 
 semantic_starts = (
-    'chore:',
-    'docs:',
-    'feat:',
-    'fix:',
-    'refactor:',
-    'style:',
-    'test:',
+    'chore',
+    'docs',
+    'feat',
+    'fix',
+    'refactor',
+    'style',
+    'test',
 )
 
-if not any(commit_msg.startswith(s) for s in semantic_starts):
+if not any(commit_msg.startswith(s + ':') for s in semantic_starts):
     print RED
-    print "ERROR :: git commit message is not semantic, must begin" \
-          "with chore, docs, feat, fix, refactor, style, or test"
+    print "ERROR :: git commit message is not semantic, must begin " \
+          "with: %s" % (', '.join(semantic_starts))
     print NO_COLOR
     exit(1)
 
